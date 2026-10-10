@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 230" role="img" aria-label="Alur data">
+  <defs>
+    <marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L8 4L0 8z" fill="#111111"/>
+    </marker>
+    <marker id="g" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L8 4L0 8z" fill="#777777"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="230" fill="#F6F4EE"/>
+
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" text-anchor="middle">
+    <g font-size="11" letter-spacing="3" fill="#777777">
+      <text x="90" y="44">SUMBER</text>
+      <text x="270" y="44">AMBIL</text>
+      <text x="450" y="44">DATA</text>
+      <text x="630" y="44">ANALISIS</text>
+      <text x="810" y="44">HASIL</text>
+      <text x="990" y="44">FASE 2</text>
+      <text x="1130" y="44">TAMPIL</text>
+    </g>
+
+    <rect x="30" y="64" width="120" height="76" fill="none" stroke="#111111" stroke-width="1.5"/>
+    <text x="90" y="98" font-size="15" fill="#111111">API</text>
+    <text x="90" y="120" font-size="11" fill="#333333">Carbon Intensity</text>
+
+    <rect x="210" y="64" width="120" height="76" fill="#111111"/>
+    <text x="270" y="108" font-size="16" fill="#F6F4EE">data.py</text>
+
+    <rect x="390" y="64" width="120" height="76" fill="none" stroke="#111111" stroke-width="1.5"/>
+    <text x="450" y="98" font-size="15" fill="#111111">history.csv</text>
+    <text x="450" y="120" font-size="11" fill="#333333">results/</text>
+
+    <rect x="570" y="64" width="120" height="76" fill="#111111"/>
+    <text x="630" y="108" font-size="16" fill="#F6F4EE">eda.py</text>
+
+    <rect x="750" y="64" width="120" height="76" fill="none" stroke="#111111" stroke-width="1.5"/>
+    <text x="810" y="98" font-size="14" fill="#111111">baseline.json</text>
+    <text x="810" y="120" font-size="14" fill="#111111">eda.png</text>
+
+    <rect x="930" y="64" width="120" height="76" fill="none" stroke="#777777" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="990" y="98" font-size="14" fill="#777777">ewma.py</text>
+    <text x="990" y="120" font-size="14" fill="#777777">cep.py</text>
+
+    <rect x="1090" y="64" width="80" height="76" fill="none" stroke="#777777" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="1130" y="108" font-size="14" fill="#777777">app.py</text>
+  </g>
+
+  <g stroke="#111111" stroke-width="1.5" marker-end="url(#a)">
+    <path d="M150 102H206"/>
+    <path d="M330 102H386"/>
+    <path d="M510 102H566"/>
+    <path d="M690 102H746"/>
+  </g>
+  <g stroke="#777777" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#g)">
+    <path d="M870 102H926"/>
+    <path d="M1050 102H1086"/>
+  </g>
+
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="11" letter-spacing="2" fill="#333333">
+    <rect x="30" y="186" width="14" height="14" fill="#111111"/>
+    <text x="54" y="198">PROGRAM</text>
+    <rect x="160" y="186" width="14" height="14" fill="none" stroke="#111111" stroke-width="1.5"/>
+    <text x="184" y="198">BERKAS</text>
+    <rect x="290" y="186" width="14" height="14" fill="none" stroke="#777777" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <text x="314" y="198" fill="#777777">RENCANA</text>
+  </g>
+</svg>
