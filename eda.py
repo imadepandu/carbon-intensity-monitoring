@@ -20,6 +20,8 @@ LAGS = (1, 2, 4, 48)  # in 30-minute periods; 48 = same time on the previous day
 MIN_REFERENCE_ROWS = 100
 MAD_TO_STD = 1.4826  # scales the MAD to estimate the standard deviation of normal data
 
+INK, DARK, MID, WARM, PAPER = "#111111", "#333333", "#777777", "#BEB8AD", "#F6F4EE"
+
 
 @dataclass(frozen=True)
 class Baseline:
@@ -75,6 +77,19 @@ def hourly_profile(frame: pd.DataFrame) -> pd.DataFrame:
     return grouped.agg(["mean", "std", "count"]).rename_axis("hour_utc")
 
 
+def _style(ax, title: str, xlabel: str = "", ylabel: str = "") -> None:
+    ax.set_facecolor(PAPER)
+    ax.set_title(title, loc="left", fontsize=9, color=INK, pad=12)
+    ax.set_xlabel(xlabel, fontsize=8, color=DARK)
+    ax.set_ylabel(ylabel, fontsize=8, color=DARK)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    for side in ("left", "bottom"):
+        ax.spines[side].set_color(INK)
+        ax.spines[side].set_linewidth(0.8)
+    ax.tick_params(colors=DARK, labelsize=8, width=0.6)
+
+
 def plot_summary(
     reference: pd.DataFrame,
     monitoring: pd.DataFrame,
@@ -82,35 +97,38 @@ def plot_summary(
     hourly: pd.DataFrame,
     path: Path = FIGURE_PATH,
 ) -> None:
-    fig = Figure(figsize=(14, 9), layout="constrained")
+    fig = Figure(figsize=(14, 9), facecolor=PAPER, layout="constrained")
     (series_ax, hist_ax), (acf_ax, hour_ax) = fig.subplots(2, 2)
 
-    series_ax.plot(reference["timestamp"], reference["error"], lw=0.7, label="Referensi")
-    series_ax.plot(monitoring["timestamp"], monitoring["error"], lw=0.7, label="Pantauan")
-    series_ax.axhline(baseline.mean, color="k", lw=1, label="Rata-rata")
+    series_ax.plot(reference["timestamp"], reference["error"], lw=0.7, color=MID, label="Referensi")
+    series_ax.plot(
+        monitoring["timestamp"], monitoring["error"], lw=0.7, color=INK, label="Pantauan"
+    )
+    series_ax.axhline(baseline.mean, color=DARK, lw=0.9)
     for sign in (-1, 1):
-        limit = baseline.mean + sign * 3 * baseline.robust_std
-        series_ax.axhline(limit, color="r", ls="--", lw=0.8)
-    series_ax.set(title="Galat (actual - forecast)", ylabel="gCO2/kWh")
+        series_ax.axhline(
+            baseline.mean + sign * 3 * baseline.robust_std, color=MID, ls="--", lw=0.8
+        )
+    _style(series_ax, "GALAT (ACTUAL - FORECAST)", ylabel="gCO2/kWh")
     series_ax.tick_params(axis="x", rotation=30)
-    series_ax.legend(fontsize=8)
+    series_ax.legend(fontsize=8, frameon=False, labelcolor=DARK)
 
-    hist_ax.hist(reference["error"], bins=40)
-    hist_ax.axvline(baseline.mean, color="k")
-    hist_ax.set(title="Sebaran galat (referensi)", xlabel="galat", ylabel="jumlah periode")
+    hist_ax.hist(reference["error"], bins=40, color=WARM, edgecolor=PAPER)
+    hist_ax.axvline(baseline.mean, color=INK, lw=0.9)
+    _style(hist_ax, "SEBARAN GALAT (REFERENSI)", "galat", "jumlah periode")
 
     lags = range(1, 49)
-    acf_ax.bar(lags, [reference["error"].autocorr(lag) for lag in lags])
+    acf_ax.bar(lags, [reference["error"].autocorr(lag) for lag in lags], color=DARK, width=0.7)
     bound = 1.96 / np.sqrt(len(reference))
-    acf_ax.axhline(bound, color="r", ls="--", lw=0.8)
-    acf_ax.axhline(-bound, color="r", ls="--", lw=0.8)
-    acf_ax.set(title="Autokorelasi galat", xlabel="lag (periode 30 menit)", ylabel="korelasi")
+    for sign in (-1, 1):
+        acf_ax.axhline(sign * bound, color=MID, ls="--", lw=0.8)
+    _style(acf_ax, "AUTOKORELASI GALAT", "lag (periode 30 menit)", "korelasi")
 
-    hour_ax.bar(hourly.index, hourly["std"])
-    hour_ax.set(title="Simpangan baku galat per jam", xlabel="jam (UTC)", ylabel="std")
+    hour_ax.bar(hourly.index, hourly["std"], color=DARK, width=0.7)
+    _style(hour_ax, "SIMPANGAN BAKU GALAT PER JAM", "jam (UTC)", "std")
 
     Path(path).parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(path, dpi=130)
+    fig.savefig(path, dpi=130, facecolor=PAPER)
 
 
 def format_report(
