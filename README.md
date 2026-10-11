@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/banner.svg" alt="Forecast Sentinel: pemantauan galat peramalan intensitas karbon Inggris" width="100%">
+  <img src="assets/banner.svg" alt="Forecast Sentinel: pemantauan galat peramalan intensitas karbon Inggris" width="100%">
 </p>
 
 # Forecast Sentinel
@@ -11,7 +11,7 @@ Setiap 30 menit, [Carbon Intensity API](https://api.carbonintensity.org.uk) memb
 ## Alur kerja
 
 <p align="center">
-  <img src="docs/alur.svg" alt="Alur kerja: ambil data, tetapkan baseline, pantau dengan EWMA, kenali pola, tampilkan" width="100%">
+  <img src="assets/pipeline.svg" alt="Alur kerja: ambil data, tetapkan baseline, pantau dengan EWMA, kenali pola, tampilkan" width="100%">
 </p>
 
 ## Status
