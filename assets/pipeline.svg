@@ -1,68 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 230" role="img" aria-label="Alur data">
-  <defs>
-    <marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0 0L8 4L0 8z" fill="#111111"/>
-    </marker>
-    <marker id="g" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0 0L8 4L0 8z" fill="#777777"/>
-    </marker>
-  </defs>
-  <rect width="1200" height="230" fill="#F6F4EE"/>
-
-  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" text-anchor="middle">
-    <g font-size="11" letter-spacing="3" fill="#777777">
-      <text x="90" y="44">SUMBER</text>
-      <text x="270" y="44">AMBIL</text>
-      <text x="450" y="44">DATA</text>
-      <text x="630" y="44">ANALISIS</text>
-      <text x="810" y="44">HASIL</text>
-      <text x="990" y="44">FASE 2</text>
-      <text x="1130" y="44">TAMPIL</text>
-    </g>
-
-    <rect x="30" y="64" width="120" height="76" fill="none" stroke="#111111" stroke-width="1.5"/>
-    <text x="90" y="98" font-size="15" fill="#111111">API</text>
-    <text x="90" y="120" font-size="11" fill="#333333">Carbon Intensity</text>
-
-    <rect x="210" y="64" width="120" height="76" fill="#111111"/>
-    <text x="270" y="108" font-size="16" fill="#F6F4EE">data.py</text>
-
-    <rect x="390" y="64" width="120" height="76" fill="none" stroke="#111111" stroke-width="1.5"/>
-    <text x="450" y="98" font-size="15" fill="#111111">history.csv</text>
-    <text x="450" y="120" font-size="11" fill="#333333">results/</text>
-
-    <rect x="570" y="64" width="120" height="76" fill="#111111"/>
-    <text x="630" y="108" font-size="16" fill="#F6F4EE">eda.py</text>
-
-    <rect x="750" y="64" width="120" height="76" fill="none" stroke="#111111" stroke-width="1.5"/>
-    <text x="810" y="98" font-size="14" fill="#111111">baseline.json</text>
-    <text x="810" y="120" font-size="14" fill="#111111">eda.png</text>
-
-    <rect x="930" y="64" width="120" height="76" fill="none" stroke="#777777" stroke-width="1.5" stroke-dasharray="5 4"/>
-    <text x="990" y="98" font-size="14" fill="#777777">ewma.py</text>
-    <text x="990" y="120" font-size="14" fill="#777777">cep.py</text>
-
-    <rect x="1090" y="64" width="80" height="76" fill="none" stroke="#777777" stroke-width="1.5" stroke-dasharray="5 4"/>
-    <text x="1130" y="108" font-size="14" fill="#777777">app.py</text>
-  </g>
-
-  <g stroke="#111111" stroke-width="1.5" marker-end="url(#a)">
-    <path d="M150 102H206"/>
-    <path d="M330 102H386"/>
-    <path d="M510 102H566"/>
-    <path d="M690 102H746"/>
-  </g>
-  <g stroke="#777777" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#g)">
-    <path d="M870 102H926"/>
-    <path d="M1050 102H1086"/>
-  </g>
-
-  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="11" letter-spacing="2" fill="#333333">
-    <rect x="30" y="186" width="14" height="14" fill="#111111"/>
-    <text x="54" y="198">PROGRAM</text>
-    <rect x="160" y="186" width="14" height="14" fill="none" stroke="#111111" stroke-width="1.5"/>
-    <text x="184" y="198">BERKAS</text>
-    <rect x="290" y="186" width="14" height="14" fill="none" stroke="#777777" stroke-width="1.5" stroke-dasharray="3 2"/>
-    <text x="314" y="198" fill="#777777">RENCANA</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 520" width="1280" height="520" role="img" aria-labelledby="t d">
+<title id="t">Alur kerja Forecast Sentinel</title>
+<desc id="d">Lima langkah: ambil data, tetapkan baseline, pantau dengan EWMA, kenali pola dengan CEP, lalu tampilkan di dashboard.</desc>
+<style>text{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;fill:#111}.g{fill:#777}.t{font-weight:700;font-size:18px}.m{font-family:Menlo,Consolas,"DejaVu Sans Mono",monospace;font-size:10.5px}.e{font-size:11.5px}.d{font-size:11.5px;fill:#333}</style>
+<defs><g id="f"><path d="M-46,0 a46,46 0 0 1 92,0 Z"/><circle cy="-58" r="20" stroke="#fff" stroke-width="3"/><circle cx="-7" cy="-60" r="3" fill="#fff"/><circle cx="7" cy="-60" r="3" fill="#fff"/></g></defs>
+<rect width="1280" height="520" fill="#fff"/>
+<text x="60" y="52" font-size="32" font-weight="700" style="fill:#b5b5b5">alur kerja</text>
+<line x1="40" y1="300" x2="1240" y2="300" stroke="#000" stroke-width="1.5"/>
+<text x="1220" y="50" font-size="12" class="g" text-anchor="end">Fase 1 dan 2 selesai · Fase 3 berikutnya</text>
+<ellipse cx="128" cy="130" rx="70" ry="52" fill="#fff" stroke="#000" stroke-width="2.5"/><circle cx="120" cy="196" r="7" fill="#fff" stroke="#000" stroke-width="2.5"/><circle cx="125" cy="212" r="4" fill="#fff" stroke="#000" stroke-width="2.5"/>
+<ellipse cx="128" cy="108" rx="24" ry="8" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M104,108 v38 a24,8 0 0 0 48,0 v-38" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M104,126 a24,8 0 0 0 48,0" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<use xlink:href="#f" x="128" y="300"/>
+<text x="128" y="338" class="t" text-anchor="middle">Ambil data</text>
+<text x="128" y="356" class="e g" text-anchor="middle">Fetch data</text>
+<text x="128" y="386" class="d" text-anchor="middle">Data forecast dan actual tiap 30</text>
+<text x="128" y="402" class="d" text-anchor="middle">menit dari API Carbon Intensity,</text>
+<text x="128" y="418" class="d" text-anchor="middle">disimpan sebagai cache.</text>
+<rect x="93" y="448" width="69" height="22" rx="11" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="128" y="463" class="m" text-anchor="middle">data.py</text>
+<ellipse cx="384" cy="130" rx="70" ry="52" fill="#fff" stroke="#000" stroke-width="2.5"/><circle cx="376" cy="196" r="7" fill="#fff" stroke="#000" stroke-width="2.5"/><circle cx="381" cy="212" r="4" fill="#fff" stroke="#000" stroke-width="2.5"/>
+<rect x="340" y="144" width="10" height="10" fill="#000"/><rect x="353" y="132" width="10" height="22" fill="#000"/><rect x="366" y="118" width="10" height="36" fill="#000"/><rect x="379" y="108" width="10" height="46" fill="#000"/><rect x="392" y="120" width="10" height="34" fill="#000"/><rect x="405" y="134" width="10" height="20" fill="#000"/><rect x="418" y="145" width="10" height="9" fill="#000"/><line x1="385" y1="104" x2="385" y2="154" stroke="#000" stroke-width="1.5" stroke-dasharray="3 3"/>
+<use xlink:href="#f" x="384" y="300"/>
+<text x="384" y="338" class="t" text-anchor="middle">Tetapkan baseline</text>
+<text x="384" y="356" class="e g" text-anchor="middle">Set the baseline</text>
+<text x="384" y="386" class="d" text-anchor="middle">21 hari pertama jadi referensi.</text>
+<text x="384" y="402" class="d" text-anchor="middle">Dari sini dihitung rata-rata dan</text>
+<text x="384" y="418" class="d" text-anchor="middle">sebaran galat yang wajar.</text>
+<rect x="353" y="448" width="62" height="22" rx="11" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="384" y="463" class="m" text-anchor="middle">eda.py</text>
+<ellipse cx="640" cy="130" rx="70" ry="52" fill="#fff" stroke="#000" stroke-width="2.5"/><circle cx="632" cy="196" r="7" fill="#fff" stroke="#000" stroke-width="2.5"/><circle cx="637" cy="212" r="4" fill="#fff" stroke="#000" stroke-width="2.5"/>
+<line x1="592" y1="108" x2="688" y2="108" stroke="#000" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="592" y1="152" x2="688" y2="152" stroke="#000" stroke-width="1.5" stroke-dasharray="4 3"/><polyline points="594,136 610,140 624,128 638,122 654,100 670,96 684,102" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="650" cy="108" r="5" fill="#000"/>
+<use xlink:href="#f" x="640" y="300"/>
+<text x="640" y="338" class="t" text-anchor="middle">Pantau dengan EWMA</text>
+<text x="640" y="356" class="e g" text-anchor="middle">Monitor with EWMA</text>
+<text x="640" y="386" class="d" text-anchor="middle">Galat dihaluskan. Alarm muncul bila</text>
+<text x="640" y="402" class="d" text-anchor="middle">nilainya keluar dari batas kendali</text>
+<text x="640" y="418" class="d" text-anchor="middle">atas (UCL) atau bawah (LCL).</text>
+<rect x="605" y="448" width="69" height="22" rx="11" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="640" y="463" class="m" text-anchor="middle">ewma.py</text>
+<circle cx="842" cy="128" r="27" fill="#fff" stroke="#000" stroke-width="2.5"/>
+<circle cx="896" cy="100" r="27" fill="#fff" stroke="#000" stroke-width="2.5"/>
+<circle cx="950" cy="128" r="27" fill="#fff" stroke="#000" stroke-width="2.5"/>
+<circle cx="830" cy="128" r="3.6" fill="#000"/><circle cx="842" cy="128" r="3.6" fill="#000"/><circle cx="854" cy="128" r="3.6" fill="#000"/>
+<polyline points="882,112 892,108 898,98 910,86" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M936,128 h8 M956,128 h8" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="886" cy="200" r="7" fill="#fff" stroke="#000" stroke-width="2.5"/><circle cx="891" cy="214" r="4" fill="#fff" stroke="#000" stroke-width="2.5"/>
+<use xlink:href="#f" x="896" y="300"/>
+<text x="896" y="338" class="t" text-anchor="middle">Kenali pola</text>
+<text x="896" y="356" class="e g" text-anchor="middle">Detect patterns</text>
+<text x="896" y="386" class="d" text-anchor="middle">Alarm dikelompokkan menjadi pola:</text>
+<text x="896" y="402" class="d" text-anchor="middle">berulang, naik atau turun, dan</text>
+<text x="896" y="418" class="d" text-anchor="middle">data yang berhenti masuk.</text>
+<rect x="865" y="448" width="62" height="22" rx="11" fill="none" stroke="#000" stroke-width="1.2"/>
+<text x="896" y="463" class="m" text-anchor="middle">cep.py</text>
+<rect x="1088" y="80" width="128" height="88" rx="7" fill="#fff" stroke="#000" stroke-width="2.5" stroke-dasharray="7 5"/>
+<polyline points="1104,140 1122,128 1138,134 1156,110 1174,118 1198,98" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 7"/>
+<path d="M1138,168 v10 h28 v-10" fill="none" stroke="#000" stroke-width="2.5" stroke-dasharray="4 4"/>
+<use xlink:href="#f" x="1152" y="300"/>
+<text x="1152" y="338" class="t" text-anchor="middle">Tampilkan</text>
+<text x="1152" y="356" class="e g" text-anchor="middle">Show the dashboard</text>
+<text x="1152" y="386" class="d" text-anchor="middle">Dashboard near-real-time yang</text>
+<text x="1152" y="402" class="d" text-anchor="middle">memutar ulang data dan menandai</text>
+<text x="1152" y="418" class="d" text-anchor="middle">alarm. Dikerjakan berikutnya.</text>
+<rect x="1075" y="448" width="153" height="22" rx="11" fill="none" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="1152" y="463" class="m" text-anchor="middle">app.py · berikutnya</text>
 </svg>
