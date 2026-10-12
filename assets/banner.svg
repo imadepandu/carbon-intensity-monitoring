@@ -23,7 +23,6 @@
 <text x="60" y="106" font-size="21" class="m">Pemantauan galat peramalan intensitas karbon Inggris</text>
 <text x="60" y="138" font-size="12" class="g">Selisih antara nilai aktual dan ramalan setiap 30 menit mudah berayun sesaat.</text>
 <text x="60" y="155" font-size="12" class="g">EWMA menghaluskannya, lalu pola CEP memberi tahu mana yang bertahan.</text>
-<text x="60" y="172" font-size="12s" class="g">Real-time analytics · EWMA · Complex Event Processing</text>
 <rect x="1110" y="214" width="9" height="9" fill="#000"/><text x="1126" y="223" font-size="11">Galat terhaluskan</text>
 <line x1="1110" y1="241" x2="1119" y2="241" stroke="#777" stroke-width="1.5" stroke-dasharray="3 2"/><text x="1126" y="245" font-size="11">Awal pemantauan</text>
 

@@ -84,15 +84,7 @@ Tahap EWMA dan CEP memproses satu periode sekali, sehingga hasilnya sama persis 
 
 ### Contoh pemutaran ulang
 
-GIF di atas memutar ulang salah satu kejadian yang bertahan. Pada contoh ini ramalan anjlok sementara nilai aktual bergerak mulus, sehingga galat mentah (titik abu-abu) melonjak dan bertahan tinggi. EWMA (garis hitam) naik lebih pelan dan keluar dari batas kendali beberapa periode setelah galat mulai naik. Pola **Repetition** terkonfirmasi satu jam kemudian, saat alarm sudah tiga periode berturut-turut. Panel bawah menunjukkan kapan tiap pola aktif.
-
-### Seluruh periode
-
-<p align="center">
-  <img src="docs/hasil.png" alt="EWMA galat sepanjang periode dengan batas kendali, alarm, dan pola yang terdeteksi" width="100%">
-</p>
-
-Sebagian besar alarm hanya berlangsung satu sampai tiga periode, yaitu lonjakan sesaat yang memang ingin disaring. Hanya sedikit yang bertahan menjadi Repetition.
+GIF di atas memutar ulang salah satu kejadian yang bertahan. Pada contoh ini ramalan anjlok sementara nilai aktual bergerak mulus, sehingga galat mentah (titik abu-abu) melonjak dan bertahan tinggi. EWMA (garis hitam) naik lebih pelan dan keluar dari batas kendali beberapa periode setelah galat mulai naik. Pola Repetition terkonfirmasi satu jam kemudian, saat alarm sudah tiga periode berturut-turut. Panel bawah menunjukkan kapan tiap pola aktif.
 
 ### Jumlah kejadian per pola
 
