@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Forecast Sentinel: pemantauan galat peramalan intensitas karbon Inggris" width="100%">
+  <img src="assets/banner.svg" alt="Carbon Intensity Monitoring: pemantauan galat peramalan intensitas karbon Inggris" width="100%">
 </p>
 
-# Forecast Sentinel
+# Carbon Intensity Monitoring
 
 Sistem pemantauan *near-real-time* yang mendeteksi kapan ramalan intensitas karbon listrik Inggris mulai meleset secara berkelanjutan, bukan sekadar melonjak sesaat. Galat ramalan dihaluskan dengan **EWMA**, lalu pola yang bertahan dikenali dengan **Complex Event Processing (CEP)**.
 
