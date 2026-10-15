@@ -11,9 +11,9 @@ from typing import Any, NamedTuple
 import numpy as np
 import pandas as pd
 
-from data import CACHE_PATH, get_data, replay
-from eda import MIN_REFERENCE_ROWS, split_reference
-from ewma import EWMA, build_detector
+from engine.data import CACHE_PATH, get_data, replay
+from engine.eda import MIN_REFERENCE_ROWS, split_reference
+from engine.ewma import EWMA, build_detector
 
 SUMMARY_PATH = Path("results/cep_summary.csv")
 REPEAT = 3  # consecutive EWMA alarms that make a repetition (1.5 hours)

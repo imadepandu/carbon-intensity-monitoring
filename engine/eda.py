@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 from matplotlib.figure import Figure
 
-from data import CACHE_PATH, complete_events, get_data, quality_report
+from engine.data import CACHE_PATH, complete_events, get_data, quality_report
 
 BASELINE_PATH = Path("results/baseline.json")
 FIGURE_PATH = Path("results/eda.png")

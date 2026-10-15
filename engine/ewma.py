@@ -14,8 +14,8 @@ from typing import NamedTuple
 import numpy as np
 import pandas as pd
 
-from data import CACHE_PATH, get_data, replay
-from eda import MIN_REFERENCE_ROWS, Baseline, compute_baseline, split_reference
+from engine.data import CACHE_PATH, get_data, replay
+from engine.eda import MIN_REFERENCE_ROWS, Baseline, compute_baseline, split_reference
 
 GRID_PATH = Path("results/ewma_grid.csv")
 LAMBDAS = (0.1, 0.2, 0.3)
