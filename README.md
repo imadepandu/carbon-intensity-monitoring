@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Carbon Intensity Monitoring: pemantauan galat peramalan intensitas karbon Inggris" width="100%">
+  <img src="assets/banner2.svg" alt="Carbon Intensity Monitoring: pemantauan galat peramalan intensitas karbon Inggris" width="100%">
 </p>
 
 # Carbon Intensity Monitoring
