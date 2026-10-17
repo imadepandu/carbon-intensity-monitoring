@@ -1,6 +1,6 @@
 # Carbon Intensity Monitoring
 
-Sistem pemantauan *near-real-time* yang mendeteksi kapan ramalan intensitas karbon listrik Inggris mulai meleset secara berkelanjutan, bukan sekadar melonjak sesaat. Galat ramalan dihaluskan dengan **EWMA**, lalu pola yang bertahan dikenali dengan **Complex Event Processing (CEP)**.
+Sistem pemantauan *near-real-time* yang mendeteksi kapan ramalan intensitas karbon listrik Inggris mulai meleset secara berkelanjutan, bukan sekadar melonjak sesaat. Galat ramalan dihaluskan dengan **EWMA**, lalu pola yang bertahan dikenali dengan **Complex Event Processing (CEP)**, dan hasilnya ditampilkan di dashboard **Streamlit**.
 
 <p align="center">
   <img src="assets/demo.gif" alt="Contoh pemutaran ulang: galat mentah, EWMA, batas kendali, dan pola yang muncul bertahap" width="85%">
@@ -14,7 +14,7 @@ Sistem pemantauan *near-real-time* yang mendeteksi kapan ramalan intensitas karb
 | **Pertanyaan** | Kapan galat ramalan (`actual − forecast`) menyimpang dan bertahan menyimpang? |
 | **Metode** | EWMA dengan batas kendali yang dikalibrasi dari data, lalu pola Repetition, Trend, dan Absence |
 | **Hasil** | Sekitar 0,7 kejadian alarm per hari, dan sekitar 0,3 per hari di antaranya bertahan menjadi pola Repetition |
-| **Status** | Fase 1 dan 2 selesai (data, baseline, EWMA, CEP). Dashboard (Fase 3) berikutnya |
+| **Status** | Semua fase selesai: data, baseline, EWMA, CEP, dan dashboard |
 
 ## Latar belakang
 
@@ -69,12 +69,37 @@ Satu lonjakan hanya menggeser `z` sebesar λ kali besarnya, sehingga alarm baru 
 </p>
 
 1. **Ambil data.** `data.py` mengambil forecast dan actual dari API, menyimpannya sebagai cache (`results/history.csv`), dan menghitung galat. Data juga bisa diputar ulang satu periode demi satu periode untuk meniru aliran.
-2. **Tetapkan baseline.** `eda.py` membagi data menjadi 21 hari referensi dan sisanya pantauan, lalu menghitung baseline beserta diagnostiknya, seperti autokorelasi dan pola per jam (`results/baseline.json`, `results/eda.png`).
+2. **Tetapkan baseline.** `eda.py` membagi data menjadi referensi dan pantauan, lalu menghitung baseline beserta diagnostiknya, seperti autokorelasi dan pola per jam (`results/baseline.json`, `results/eda.png`).
 3. **Pantau dengan EWMA.** `ewma.py` mengkalibrasi lebar batas dari referensi, lalu menilai tiap periode baru. Modul ini juga membandingkan berbagai pengaturan (`results/ewma_grid.csv`).
 4. **Kenali pola.** `cep.py` membaca rangkaian alarm dan menandai Repetition, Trend, dan Absence (`results/cep_summary.csv`).
-5. **Tampilkan.** `app.py` (Fase 3, berikutnya) memutar ulang data sebagai aliran dan menandai alarm di dashboard.
+5. **Tampilkan.** `app.py` memuat data, menjalankan keempat tahap di atas dengan parameter yang dipilih pengguna, lalu menampilkan hasilnya sebagai dashboard Streamlit: status terbaru, grafik galat dengan batas kendali, penanda pola, dan ekspor hasil.
 
-Tahap EWMA dan CEP memproses satu periode sekali, sehingga hasilnya sama persis baik data diproses sekaligus (batch) maupun satu per satu (stream).
+Tahap EWMA dan CEP memproses satu periode sekali, sehingga hasilnya sama persis baik data diproses sekaligus (batch) maupun satu per satu (stream). Dashboard memakai mesin yang sama dengan skrip di atas, tanpa menghitung ulang dengan cara lain.
+
+## Dashboard
+
+<p align="center">
+  <img src="assets/dashboard.png" alt="Halaman utama dashboard: kartu status terbaru, daftar aktivitas, grafik galat dengan titik sorotan, dan kartu pola kejadian" width="90%">
+</p>
+
+Dashboard memantau selisih intensitas karbon aktual dan forecast, dengan tampilan monokrom yang bisa diganti antara tema terang dan gelap. Menu samping dapat diciutkan menjadi deretan ikon.
+
+| Halaman | Isi |
+|---|---|
+| **Dashboard** | Kartu status observasi terakhir, rata-rata dan varians galat, daftar alarm dan pola terbaru (bisa dicari dan difilter), grafik **Galat** (galat mentah, EWMA, batas kendali, penanda pola) atau **Intensitas** (forecast dan aktual), pilihan rentang waktu, serta kartu jumlah kejadian per pola |
+| **Pola CEP** | Jumlah alarm per hari, perbandingan laju kejadian referensi dan pantauan, serta tabel lengkap tiap alarm beserta statistik EWMA dan batas kendalinya |
+| **EDA dan kualitas data** | Pemeriksaan data (baris, periode hilang, nilai kosong), sebaran galat, variasi galat per jam, baseline, dan autokorelasi |
+| **Pengaturan** | Rentang data (7–90 hari), sumber data (otomatis, API langsung, atau cache CSV), λ, α, window CEP, dan tema |
+| **Unduh data** | Data, hasil gabungan EWMA + CEP, dan ringkasan pola dalam CSV atau satu berkas ZIP |
+| **Tentang** | Penjelasan singkat empat tahap dan cara membaca hasil |
+
+Beberapa hal yang perlu diketahui saat membaca dashboard:
+
+- Periode referensi otomatis diambil sekitar 70% dari rentang data yang dipilih (21 hari untuk 30 hari), sisanya menjadi periode pantauan.
+- Penanda pada grafik hanya dipasang pada periode pantauan, agar kejadian di masa kalibrasi tidak terbaca sebagai insiden terkini.
+- Batas kendali pada grafik dipetakan kembali ke skala galat asli memakai baseline referensi. Semua waktu memakai UTC.
+- Karena durasi referensi dan pantauan berbeda, bandingkan **laju kejadian per hari**, bukan jumlah mentahnya.
+- Data disimpan sementara selama 5 menit. Tombol perbarui di bagian atas mengambil ulang data dari sumber yang dipilih.
 
 ## Hasil
 
@@ -128,21 +153,24 @@ python eda.py              # baseline dan grafik eksplorasi
 python ewma.py             # bandingkan pengaturan EWMA
 python cep.py              # hitung kejadian per pola
 python visual.py           # buat GIF dan gambar hasil untuk README
+
+streamlit run app.py       # buka dashboard di browser
 ```
 
-Semua skrip punya opsi `--mode`: `auto` (coba API, pakai cache bila gagal), `live` (wajib API), dan `csv` (hanya cache, tanpa internet). Jendela 30 hari mengikuti data terbaru, jadi pakai `--mode csv` untuk mengulang hasil dari cache yang sama.
+Dashboard membutuhkan Streamlit 1.40 atau lebih baru dan Plotly. Skrip `data.py`, `eda.py`, `ewma.py`, dan `cep.py` punya opsi `--mode`: `auto` (coba API, pakai cache bila gagal), `live` (wajib API), dan `csv` (hanya cache, tanpa internet). Jendela 30 hari mengikuti data terbaru, jadi pakai `--mode csv` untuk mengulang hasil dari cache yang sama. Di dashboard, pilihan yang sama ada di halaman **Pengaturan** pada kolom *Sumber data*.
 
 ## Struktur repositori
 
 ```
 .
+├── app.py           # dashboard Streamlit
 ├── data.py          # pengambilan data, cache, dan pemutaran ulang
 ├── eda.py           # referensi, baseline, dan eksplorasi
 ├── ewma.py          # detektor EWMA dan kalibrasi batas
 ├── cep.py           # pola Repetition, Trend, Absence
-├── visual.py     # pembuat GIF dan gambar hasil untuk README
-├── assets/            # banner, diagram alur, GIF, dan gambar hasil
-├── results/         # keluaran: baseline, grafik, tabel perbandingan, ringkasan pola
+├── visual.py        # pembuat GIF dan gambar hasil untuk README
+├── assets/          # diagram alur, GIF, dan tangkapan layar dashboard
+├── results/         # keluaran: cache data, baseline, grafik, tabel perbandingan, ringkasan pola
 ├── requirements.txt
 └── README.md
 ```
